@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Post Detail</title>
+</head>
+<body>
+    <!--{{post}}-->
+    
+    {% if messages  %}
+        
+    {% for message in messages  %}
+    <p style="color: red;">{{message}}</p>
+      
+    {% endfor %}
+        
+    {% endif %}
+        
+
+    <h1>Post detay </h1>
+    <br>
+    <h2>{{post.header}}</h2>
+    <div>
+        {{post.content}}
+    </div>
+    <p>olusturuldu {{post.craeted}}</p>
+    <p>guncellendi {{post.updated}}</p>
+
+    <br><br>
+    <h1>yorum yap</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Yorum ekle</button>
+    </form>
+    
+    {% if comments %}
+        <h1>bir kac yorum var</h1>
+        {% for comment in comments %}
+          <div>
+              <p>
+                  {{comment.header}}
+              </p>
+              <div>
+                  {{comment.content}}
+              </div>
+          </div>
+        {% endfor %}
+    {% else %}
+        <h1>yorum yok</h1>
+    {% endif %}
+        
+
+</body>
+</html>

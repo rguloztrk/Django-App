@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Post Create</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}  <!--django da formu ekrana yazmanin kolay yolu, aralara br ekleyerek render edicek-->
+        <button type="submit">create post</button>
+    </form>
+</body>
+</html>
+
+

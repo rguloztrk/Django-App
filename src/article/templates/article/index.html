@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Anasayfa</title>
+</head>
+<body>
+    <h1 style="color: red;">
+    Anasayfa    
+    </h1>
+    <span>Kulanici Bilgisi: {{request.user}}</span><br>
+
+    {{request}}
+    <!--<p>Lorem ipsum dolor sit amet.</p><br>
+    <hr>
+    <p>Contexten gelen veriler</p>
+    <ul>
+        <li>{{django}}</li>
+        <li>{{flask}}</li>
+        <li>{{pehape}}</li>
+        <li>{{now}}</li>
+    </ul>-->
+
+    {% if messages %}
+    {% for message in messages %}
+
+    <p style="color: chartreuse;">{{message}}</p>
+      
+    {% endfor %}
+
+    {% endif %}
+
+    
+
+</body>
+</html>

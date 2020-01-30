@@ -1,0 +1,9 @@
+{
+    "python.pythonPath": "/home/rukiye/Desktop/newPorject2020/.venv/bin/python",
+    "python.linting.pylintEnabled": false,
+    "python.linting.pycodestyleEnabled": false,
+    "python.linting.enabled": false,
+    "python.linting.banditEnabled": false,
+    "python.linting.mypyEnabled": false,
+    "python.linting.pylamaEnabled": true
+}
