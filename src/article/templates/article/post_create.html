@@ -9,7 +9,7 @@
 <body>
     <form action="" method="POST">
         {% csrf_token %}
-        {{form.as_p}}  <!--django da formu ekrana yazmanin kolay yolu, aralara br ekleyerek render edicek-->
+        {{form.as_p}}  <br><!--django da formu ekrana yazmanin kolay yolu, aralara br ekleyerek render edicek-->
         <button type="submit">create post</button>
     </form>
 </body>

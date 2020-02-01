@@ -16,10 +16,10 @@ class Post(models.Model):
         return self.header
 
 class Comment(models.Model):
-    title = models.CharField(max_length=30)  #help_text ile kullaniciya o kisimla ilgili bilgi vermek istedimizde kullanilir
+    header = models.CharField(max_length=30)  #help_text ile kullaniciya o kisimla ilgili bilgi vermek istedimizde kullanilir
     content = models.TextField(max_length=280)
     post = models.ForeignKey(to=Post, on_delete=models.CASCADE, related_name='comments') #hangi posta bagli oldugu, related_name postan bilgi cekmekte kolaylik sagliyor
 
     def __str__(self):
-        return f"{self.header}'e demisler ki'"  #fstring kullanildi, (self.header):self ile bu classtan urettigimiz nesneyi isaret ediyor; git onunn headerini al diyoruz
+        return f"{self.header}'e demisler ki"  #fstring kullanildi, self.header,self ile bu classtan urettigimiz nesneyi isaret ediyor; git onunn headerini al diyoruz
 

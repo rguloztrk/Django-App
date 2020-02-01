@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Post LIst</title>
+    <title>Post Listesi</title>
 </head>
 <body>
+
+    {% if posts %}
     <h1>Postlar</h1>
-    {% for post in postlar %}
+    {% for post in posts %}
 
     <!--<h1 style="color:blue">   
         {{post}} </h1> -->
@@ -21,12 +23,17 @@
     <p>guncelleme tarihi: {{post.updated|date}}</p>
         
     {% if post.draft %}
-    <p>Bu yazi taslak</p>        
+    <p>Bu yazi taslak daha bitmemis.</p>        
     {% else %}
     <p>Yayinda</p>        
     {% endif %}
         
 
     {% endfor %}
+
+    {% else %}
+    <h1>post bulunamadi.</h1>
+    {% endif %}
+    
 </body>
 </html>

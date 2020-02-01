@@ -13,8 +13,8 @@ class ArticleForm(forms.Form):
 class ArticleModelForm(forms.ModelForm):
     class Meta:
         model = Post
-        #fields = '__all__'
-        exclude = ['image', 'owner']
+        fields = '__all__'
+        #exclude = ['image', 'owner']
 
     #def clean_header(self):   #self ile olusturdugumuz formu isaret ediyrouz  GUNCELLEME KISMINDA KAPATTRIK
     #    header = self.cleaned_data.get('header') 
@@ -36,9 +36,9 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         exclude = ['post']
-        def clean_liked(self):
-            if len(self.cleaned_data.get('content')) < 30:
-                raise forms.ValidationError('Icerik karakteri az')
-            return self.cleaned_data.get('content')
+        #def clean_liked(self):
+        #    if len(self.cleaned_data.get('content')) < 30:
+        #        raise forms.ValidationError('Icerik karakteri az')
+        #    return self.cleaned_data.get('content')
 
         

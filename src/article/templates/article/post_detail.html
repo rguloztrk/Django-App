@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Post Detail</title>
+    <title>Post Detay Sayfasi</title>
 </head>
 <body>
     <!--{{post}}-->
@@ -19,7 +19,7 @@
     {% endif %}
         
 
-    <h1>Post detay </h1>
+    <h1>Post detay sayfasi</h1>
     <br>
     <h2>{{post.header}}</h2>
     <div>
@@ -27,6 +27,7 @@
     </div>
     <p>olusturuldu {{post.craeted}}</p>
     <p>guncellendi {{post.updated}}</p>
+    <p>begeni sayisi {{post.liked}}</p>
 
     <br><br>
     <h1>yorum yap</h1>
@@ -37,17 +38,20 @@
     </form>
     
     {% if comments %}
-        <h1>bir kac yorum var</h1>
-        {% for comment in comments %}
-          <div>
-              <p>
-                  {{comment.header}}
-              </p>
-              <div>
-                  {{comment.content}}
-              </div>
-          </div>
-        {% endfor %}
+    <h1>bi kac yorum var</h1>
+    {% for comment in comments  %}
+    <div>
+        <p>
+            {{comment.header}}
+        </p>
+        <div>
+            {{comment.content}}
+
+        </div>
+    </div>
+    {% endfor %}
+    <hr>
+    
     {% else %}
         <h1>yorum yok</h1>
     {% endif %}

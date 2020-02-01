@@ -47,7 +47,8 @@ def post_list(request): #>2
     context = {
         'postlar': queryset
     }
-    return render(request, 'article/post_list.html',{'postlar': queryset})
+    #return render(request, 'article/post_list.html',{'postlar': queryset}) #degisiklik
+    return render(request, 'article/post_list.html', context=context)
 
 
 def anasayfa(request):  #>1
@@ -58,7 +59,7 @@ def anasayfa(request):  #>1
         'pehape': False,
         'now': datetime.now()
     }
-    return render(request,template_name='article/index.html', context=context)
+    return render(request, template_name='article/index.html', context=context)
 
 
 def create_post(request):
@@ -91,9 +92,9 @@ def createPostMF(request):
         if form.is_valid():
             form.instance.owner = request.user
             form.save()
-            return HttpResponse('nesne yaratildi')
-     
-    return render(request, 'article/post_create.html',{'form': form})    
+            #return HttpResponse('nesne yaratildi') degisiklik 2
+            return render(request, 'article/index.html')     
+    return render(request, 'article/post_create.html', {'form': form})    
 
 
     
@@ -109,10 +110,11 @@ class ArticleListView(ListView):
     context_object_name = 'posts'
 
 
-class ArticleCreateView(LoginRequiredMixin ,CreateView):
+class ArticleCreateView(LoginRequiredMixin, CreateView):
     #login_url = '/admin'  #logout ise login yapma istegi sunduk, setting.py  dan ekledik
     model = Post
     #fields = '__all__'  #form_class = ArticleModelForm verdigimizde de geliyor form ekrarni
+    
     form_class = ArticleModelForm
     success_url = reverse_lazy('anasayfa')      #redirect 
     template_name = 'article/post_create.html'
@@ -124,13 +126,13 @@ class ArticleCreateView(LoginRequiredMixin ,CreateView):
 
     
 
-class ArticleDetailView(DetailView, SuccessMessageMixin ,FormView):
+class ArticleDetailView(DetailView, SuccessMessageMixin, FormView, ):
     model = Post
     template_name = 'article/post_detail.html'
     pk_url_kwarg = 'post_id'
     context_object_name = 'post'
     form_class = CommentForm
-    succcess_url = reverse_lazy('anasayfa')
+    success_url = reverse_lazy('anasayfa')
     success_message = 'Basariyla yorum eklendi'
 
 
@@ -140,11 +142,11 @@ class ArticleDetailView(DetailView, SuccessMessageMixin ,FormView):
         context['comments'] = self.object.comments.all()
         return context 
 
-    #def form_valid(self, form):
-    #    #self.object = self.get_object()
-    #    form.instance.post = self.get_object()
-    #    form.save()
-    #    return super().form_valid(form)
+    def form_valid(self, form):  #degisiklik3 yorum satirini kaldirdik
+        #self.object = self.get_object()
+        form.instance.post = self.get_object()
+        form.save()
+        return super().form_valid(form)
 
 
 
@@ -164,9 +166,9 @@ class  ArticleDeleteView(LoginRequiredMixin, SuccessMessageMixin,DeleteView):
     success_message = 'Basari ile silindi'
     success_url = reverse_lazy('anasayfa')
 
-    def delete(self, request, *args, **kwargs):
-        messages.add_message(self.request, messages.INFO, self.success_message)
-        return super().delete(request, *args, **kwargs)
+    #def delete(self, request, *args, **kwargs):
+    #    messages.add_message(self.request, messages.INFO, self.success_message)
+    #    return super().delete(request, *args, **kwargs)
 
 
 
